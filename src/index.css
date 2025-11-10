@@ -1,0 +1,16 @@
+@import "tailwindcss";
+@plugin "daisyui";
+@plugin "daisyui/theme" {
+  name: "light";
+  default: true;
+  --color-primary: #632EE3;
+  --color-secondary: teal;
+}
+
+/* Custom button override */
+.btn-primary {
+  @apply bg-linear-to-r from-pink-500 to-red-600 border-none text-white;
+}
+.btn-primary:hover {
+  @apply opacity-90;
+}
