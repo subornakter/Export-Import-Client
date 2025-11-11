@@ -9,6 +9,7 @@ import AddExport from "../pages/AddExport";
 import ProductDetails from "../pages/ProductDetails";
 import MyImports from "../pages/MyImports";
 import MyExports from "../pages/MyExports";
+import PrivateRoute from "./PrivateRoute";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -36,15 +37,21 @@ export const router = createBrowserRouter([
         path: "/addExport",
         element: 
          
-            <AddExport/>
+         (
+          <PrivateRoute>
+            <AddExport />
+          </PrivateRoute>
+        ),
           
-        ,
+        
       },
       {
         path: "/product-details/:id",
         element: (
-         
+            <PrivateRoute>
             <ProductDetails/>
+            </PrivateRoute>
+ 
        
         ),
       },
@@ -52,8 +59,10 @@ export const router = createBrowserRouter([
        {
         path: "/myImports",
         element: (
-          
+          <PrivateRoute>
             <MyImports/>
+          </PrivateRoute>
+            
         ),
       },
 
@@ -61,7 +70,9 @@ export const router = createBrowserRouter([
         path: "/myExports",
         element: (
           
-            <MyExports />
+          <PrivateRoute>
+            <MyExports/>
+          </PrivateRoute>
          
         ),
       },
