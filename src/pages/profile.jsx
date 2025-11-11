@@ -22,6 +22,7 @@ const profile = () => {
 
   return (
     <div className="flex justify-center items-center min-h-[70vh] bg-gray-50">
+      <title>Alpha Global Trade - profile</title>
       <div className="card bg-base-100 w-full max-w-sm shadow-xl p-6">
         <h2 className="text-2xl font-semibold text-center mb-4">Update Profile</h2>
 

@@ -2,7 +2,7 @@ import { Link } from "react-router";
 import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { ClockLoader } from "react-spinners";
-
+import { useEffect } from "react";
 import MyLink from "./MyLink";
 import { HiMenu, HiX } from "react-icons/hi";
 import { FaUser, FaGear } from "react-icons/fa6";
@@ -11,6 +11,18 @@ import { IoLogOut, IoLogIn } from "react-icons/io5";
 const Navbar = () => {
   const { user, signOutUser, loading } = useContext(AuthContext);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [theme, setTheme] = useState(localStorage.getItem('theme') || "light")
+
+  useEffect(() => {
+    const html = document.querySelector('html')
+     html.setAttribute("data-theme", theme)
+     localStorage.setItem("theme", theme)
+  }, [theme])
+
+
+  const handleTheme = (checked) => {
+    setTheme(checked ? "dark": "light")
+  }
 
   return (
     <div className="bg-base-100 flex justify-between items-center py-2 px-5 border-b border-b-slate-300 sticky top-0 z-50">
@@ -27,11 +39,11 @@ const Navbar = () => {
         {/* Logo */}
         <div className="flex gap-1 items-center">
           <img
-            className="h-10 w-10"
-            src="https://i.postimg.cc/0yQNNX24/e3.avif"
+            className="h-12 w-15"
+            src="https://i.ibb.co.com/RTQjFFbp/e26-removebg-preview.png"
             alt="Logo"
           />
-          <span className="text-2xl font-bold">Apex Global Trade</span>
+          <span className="text-2xl font-bold">Alpha Global Trade</span>
         </div>
       </div>
 
@@ -46,6 +58,11 @@ const Navbar = () => {
 
       {/* Right Side: Profile Dropdown + Logout */}
       <div className="flex items-center gap-3">
+        <input
+           onChange={(e)=> handleTheme(e.target.checked)}
+           type="checkbox"
+           defaultChecked={localStorage.getItem('theme') === "dark"}
+           className="toggle"/>
         {loading ? (
           <ClockLoader color="#e74c3c" size={30} />
         ) : user ? (

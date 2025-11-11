@@ -37,6 +37,7 @@ const MyImports = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 mt-10">
+      <title>Alpha Global Trade - MyImports</title>
       <h2 className="text-3xl font-bold mb-6 text-center text-primary">
         My Imported Products
       </h2>

@@ -7,22 +7,22 @@ const AllProducts = () => {
   const data = useLoaderData();
   console.log(data);
    const [products, setProducts] = useState(data)
-//   const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false)
 
-//   const handleSearch = (e) => {
-//     e.preventDefault()
-//     const search_text = e.target.search.value
-//     console.log(search_text)
-//     setLoading(true)
+  const handleSearch = (e) => {
+    e.preventDefault()
+    const search_text = e.target.search.value
+    console.log(search_text)
+    setLoading(true)
 
-//     fetch(`https://3d-model-server.vercel.app/search?search=${search_text}`)
-//     .then(res=> res.json())
-//     .then(data=> {
-//       console.log(data)
-//       setModels(data)
-//       setLoading(false)
-//     })
-//   }
+    fetch(`http://localhost:5000/search?search=${search_text}`)
+    .then(res=> res.json())
+    .then(data=> {
+      console.log(data)
+      setProducts(data)
+      setLoading(false)
+    })
+  }
 
 
 
@@ -32,10 +32,12 @@ const AllProducts = () => {
   return (
     <div>
       <div className="text-2xl text-center font-bold"> All Products</div>
+      <title>Alpha Global Trade - allProducts</title>
       <p className=" text-center ">Explore world best Imported Products.</p>
      
-     {/* <form onSubmit={handleSearch} className=" mt-5 mb-10 flex gap-2 justify-center">
-       <label className="input rounded-full ">
+     
+     <form onSubmit={handleSearch} className=" mt-5 mb-10 flex gap-2 justify-center">
+       <label className="input rounded-md ">
         <svg
           className="h-[1em] opacity-50"
           xmlns="http://www.w3.org/2000/svg"
@@ -54,8 +56,8 @@ const AllProducts = () => {
         </svg>
         <input name="search" type="search"  placeholder="Search" />
       </label>
-      <button className="btn btn-secondary  rounded-full">{loading ? "Searching...." : "Search"}</button>
-     </form> */}
+      <button className="btn text-white bg-linear-to-r from-pink-500 to-red-600 hover:from-red-600 hover:to-pink-500 ">{loading ? "Searching...." : "Search"}</button>
+     </form>
 
       <div className="grid grid-cols-3 lg:grid-cols-4 gap-3 mt-10">
         {products.map((product) => (

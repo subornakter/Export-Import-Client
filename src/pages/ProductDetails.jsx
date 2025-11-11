@@ -25,6 +25,11 @@ const ProductDetails = () => {
         toast.error("Failed to load product details!");
       });
   }, [id]);
+   useEffect(() => {
+  if (product) {
+    document.title = `ProductDetails | ${product.productName}`;
+  }
+}, [product]);
 
   const handleImport = (e) => {
     e.preventDefault();
@@ -98,6 +103,8 @@ const ProductDetails = () => {
   if (!product) {
     return <div className="text-center mt-10 text-red-500">Product not found.</div>;
   }
+
+
 
   return (
     <div className="max-w-5xl mx-auto p-6 my-8">
