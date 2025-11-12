@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { toast } from "react-toastify";
+import Loader from "../components/Loading";
 
 const MyExports = () => {
   const { user } = useContext(AuthContext);
@@ -70,7 +71,7 @@ const MyExports = () => {
   };
 
   if (loading) {
-    return <div className="text-center mt-10 text-lg">Loading...</div>;
+    return <Loader />;
   }
 
   return (

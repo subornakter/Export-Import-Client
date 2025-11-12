@@ -2,6 +2,7 @@ import React, { use, useEffect, useState } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router';
+import Loader from '../components/Loading';
 
 const MyImports = () => {
   const { user } = use(AuthContext);
@@ -33,7 +34,7 @@ const MyImports = () => {
       .catch((err) => console.error(err));
   };
 
-  if (loading) return <div className="text-center mt-10 text-lg">Loading...</div>;
+  if (loading) return <Loader />;
 
   return (
     <div className="max-w-7xl mx-auto px-4 mt-10">
