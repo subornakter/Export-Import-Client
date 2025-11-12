@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { toast } from "react-toastify";
 import Loader from "../components/Loading";
-
+  import Swal from "sweetalert2";
 const MyExports = () => {
   const { user } = useContext(AuthContext);
   const [myExports, setMyExports] = useState([]);
@@ -24,17 +24,51 @@ const MyExports = () => {
   }, [user]);
 
   // 🔹 Handle Delete
-  const handleDelete = (id) => {
-    if (!confirm("Are you sure you want to delete this product?")) return;
+  // const handleDelete = (id) => {
+  //   if (!confirm("Are you sure you want to delete this product?")) return;
 
-    fetch(`http://localhost:5000/myExports/${id}`, { method: "DELETE" })
-      .then((res) => res.json())
-      .then(() => {
-        toast.success("Product deleted successfully!");
-        setMyExports((prev) => prev.filter((p) => p._id !== id));
-      })
-      .catch(() => toast.error("Failed to delete product"));
-  };
+  //   fetch(`http://localhost:5000/myExports/${id}`, { method: "DELETE" })
+  //     .then((res) => res.json())
+  //     .then(() => {
+  //       toast.success("Product deleted successfully!");
+  //       setMyExports((prev) => prev.filter((p) => p._id !== id));
+  //     })
+  //     .catch(() => toast.error("Failed to delete product"));
+  // };
+
+
+const handleDelete = (id) => {
+  Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, delete it!",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      fetch(`http://localhost:5000/myExports/${id}`, { method: "DELETE" })
+        .then((res) => res.json())
+        .then(() => {
+          setMyExports((prev) => prev.filter((p) => p._id !== id));
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your product has been deleted.",
+            icon: "success",
+          });
+        })
+        .catch(() => {
+          Swal.fire({
+            title: "Error!",
+            text: "Failed to delete product.",
+            icon: "error",
+          });
+        });
+    }
+  });
+};
+
 
   // 🔹 Handle Update
   const handleUpdateSubmit = (e) => {
@@ -76,7 +110,7 @@ const MyExports = () => {
 
   return (
     <div className="max-w-6xl mx-auto p-6">
-    <title>Alpha Global Trade - MyExports</title>  
+      <title>Alpha Global Trade - MyExports</title>  
       <h2 className="text-3xl font-bold text-center mb-8">My Exported Products</h2>
 
       {myExports.length === 0 ? (
@@ -140,48 +174,75 @@ const MyExports = () => {
             <h3 className="text-xl font-bold mb-4 text-center">Update Product</h3>
 
             <form onSubmit={handleUpdateSubmit} className="space-y-3">
-              <input
-                name="productName"
-                defaultValue={selectedProduct.productName}
-                className="input input-bordered w-full rounded-full"
-              />
-              <input
-                name="productImage"
-                defaultValue={selectedProduct.productImage}
-                className="input input-bordered w-full rounded-full"
-              />
-              <input
-                type="number"
-                step="0.01"
-                name="price"
-                defaultValue={selectedProduct.price}
-                className="input input-bordered w-full rounded-full"
-              />
-              <input
-                name="originCountry"
-                defaultValue={selectedProduct.originCountry}
-                className="input input-bordered w-full rounded-full"
-              />
-              <input
-                type="number"
-                step="0.1"
-                min="1"
-                max="5"
-                name="rating"
-                defaultValue={selectedProduct.rating}
-                className="input input-bordered w-full rounded-full"
-              />
-              <input
-                type="number"
-                name="availableQuantity"
-                defaultValue={selectedProduct.availableQuantity}
-                className="input input-bordered w-full rounded-full"
-              />
-              <textarea
-                name="description"
-                defaultValue={selectedProduct.description}
-                className="textarea textarea-bordered w-full rounded-2xl"
-              />
+              <div>
+                <label className="label">Product Name</label>
+                <input
+                  name="productName"
+                  defaultValue={selectedProduct.productName}
+                  className="input input-bordered w-full rounded-full"
+                />
+              </div>
+
+              <div>
+                <label className="label">Product Image URL</label>
+                <input
+                  name="productImage"
+                  defaultValue={selectedProduct.productImage}
+                  className="input input-bordered w-full rounded-full"
+                />
+              </div>
+
+              <div>
+                <label className="label">Price ($)</label>
+                <input
+                  type="number"
+                  step="0.01"
+                  name="price"
+                  defaultValue={selectedProduct.price}
+                  className="input input-bordered w-full rounded-full"
+                />
+              </div>
+
+              <div>
+                <label className="label">Origin Country</label>
+                <input
+                  name="originCountry"
+                  defaultValue={selectedProduct.originCountry}
+                  className="input input-bordered w-full rounded-full"
+                />
+              </div>
+
+              <div>
+                <label className="label">Rating (1-5)</label>
+                <input
+                  type="number"
+                  step="0.1"
+                  min="1"
+                  max="5"
+                  name="rating"
+                  defaultValue={selectedProduct.rating}
+                  className="input input-bordered w-full rounded-full"
+                />
+              </div>
+
+              <div>
+                <label className="label">Available Quantity</label>
+                <input
+                  type="number"
+                  name="availableQuantity"
+                  defaultValue={selectedProduct.availableQuantity}
+                  className="input input-bordered w-full rounded-full"
+                />
+              </div>
+
+              <div>
+                <label className="label">Description</label>
+                <textarea
+                  name="description"
+                  defaultValue={selectedProduct.description}
+                  className="textarea textarea-bordered w-full rounded-2xl"
+                />
+              </div>
 
               <div className="flex justify-between gap-3 mt-4">
                 <button
