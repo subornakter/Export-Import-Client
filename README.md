@@ -42,7 +42,7 @@ It offers a smooth and secure experience for international traders, businesses, 
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/alpha-global-trade.git
-   git clone
+   git clone https://github.com/subornakter/Export-Import-Client.git
+   git clone https://github.com/subornakter/Export-Import-Server.git
    
 
