@@ -4,7 +4,7 @@ import { ProductCard } from "../components/ProductCard";
 import Banner from "../components/Banner";
 import ExtraSection from "../components/ExtraSection";
 import Loader from "../components/Loading";
-
+import TeamSection from "../components/TeamSection";
 const Home = () => {
   const data = useLoaderData();
   const [loading, setLoading] = useState(true);
@@ -41,7 +41,7 @@ const Home = () => {
           ))}
         </div>
       )}
-
+      <TeamSection></TeamSection> 
       <ExtraSection />
     </div>
   );
