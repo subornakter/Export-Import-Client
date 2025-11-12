@@ -2,6 +2,7 @@ import { use } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../context/AuthContext.jsx";
 import { FaGoogle } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const { signInUser, signInWithGoogle } = use(AuthContext);
@@ -34,7 +35,7 @@ const Login = () => {
         navigate(location?.state || "/");
       })
       .catch((error) => {
-        console.log(error);
+          toast.error(error.message);
       });
   };
 

@@ -1,8 +1,8 @@
 import React, { use } from "react";
 import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../context/AuthContext.jsx";
-import { FaGoogle } from "react-icons/fa6";
-  import { toast } from 'react-toastify';
+import { FaGoogle } from "react-icons/fa";
+import { toast } from 'react-toastify';
 
 
 const Register = () => {
@@ -11,36 +11,48 @@ const Register = () => {
 
   const handleRegister = (event) => {
     event.preventDefault();
-    const displayName = event.target.displayName.value;
-    const photoURL = event.target.photoURL.value;
-    const email = event.target.email.value;
+    const displayName = event.target.displayName.value.trim();
+    const photoURL = event.target.photoURL.value.trim();
+    const email = event.target.email.value.trim();
     const password = event.target.password.value;
 
-    // toast.loading("Creating user...", { id: "create-user" });
+    if (!displayName || !email || !password) {
+      toast.error("Please fill all required fields");
+      return;
+    }
+const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+
+if (!passwordRegex.test(password)) {
+  toast.error("Password must be at least 6 characters long and must have an uppercase and a lowercase letters");
+  return;
+}
+
 
     createUser(email, password)
       .then((result) => {
-        console.log(result.user);
-        updateUserProfile(displayName, photoURL);
-        toast.success("User created successfully!", { id: "create-user" });
+        updateUserProfile(displayName, photoURL)
+          .then(() => {
+            toast.success("User created successfully!");
+            event.target.reset();
+            navigate("/");
+          })
+          .catch((error) => {
+            toast.error(error.message);
+          });
       })
       .catch((error) => {
-        console.log(error);
-        toast.error(error.message, { id: "create-user" });
+        toast.error(error.message);
       });
   };
 
   const handleGoogleSignIn = () => {
-    toast.loading("Creating user...", { id: "create-user" });
     signInWithGoogle()
       .then((result) => {
-        toast.success("User created successfully!", { id: "create-user" });
-        console.log(result.user);
-        navigate("/home");
+        toast.success("User created successfully!");
+        navigate("/");
       })
       .catch((error) => {
-        console.log(error);
-        toast.error(error.message, { id: "create-user" });
+        toast.error(error.message);
       });
   };
 
@@ -51,15 +63,14 @@ const Register = () => {
         <h1 className="text-3xl font-bold text-center">Register</h1>
         <form onSubmit={handleRegister}>
           <fieldset className="fieldset">
-            {/* email field */}
             <label className="label">Name</label>
             <input
               type="text"
               name="displayName"
               className="input rounded-full focus:border-0 focus:outline-gray-200"
               placeholder="Name"
+              required
             />
-
             <label className="label">PhotoURL</label>
             <input
               type="text"
@@ -67,26 +78,26 @@ const Register = () => {
               className="input rounded-full focus:border-0 focus:outline-gray-200"
               placeholder="Photo URL"
             />
-            {/* email field */}
             <label className="label">Email</label>
             <input
               type="email"
               name="email"
               className="input rounded-full focus:border-0 focus:outline-gray-200"
               placeholder="Email"
+              required
             />
-            {/* password field */}
             <label className="label">Password</label>
             <input
               type="password"
               name="password"
               className="input rounded-full focus:border-0 focus:outline-gray-200"
               placeholder="Password"
+              required
             />
-            <div>
+            {/* <div>
               <a className="link link-hover">Forgot password?</a>
-            </div>
-            <button className="btn text-white mt-4 rounded-full bg-linear-to-r from-pink-500 to-red-600">
+            </div> */}
+            <button className="btn text-white mt-4 rounded-full bg-gradient-to-r from-pink-500 to-red-600">
               Register
             </button>
           </fieldset>
@@ -94,16 +105,15 @@ const Register = () => {
 
         <button
           onClick={handleGoogleSignIn}
-          className="btn bg-white rounded-full text-black border-[#e5e5e5]"
+          className="btn bg-white rounded-full text-black border-[#e5e5e5] mt-3 flex items-center justify-center gap-2"
         >
-          <FaGoogle />
-          Login with Google
+          <FaGoogle /> Login with Google
         </button>
-        <p className="text-center">
+        <p className="text-center mt-4">
           Already have an account? Please{" "}
           <Link className="text-blue-500 hover:text-blue-800" to="/login">
             Login
-          </Link>{" "}
+          </Link>
         </p>
       </div>
     </div>
