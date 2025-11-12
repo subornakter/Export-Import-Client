@@ -18,3 +18,36 @@
 .btn-primary:hover {
   @apply opacity-90;
 }
+
+
+
+.swiper-button-prev,
+.swiper-button-next {
+  color: #769beb;
+  transform: scale(0.6);
+  top: 45%; 
+}
+
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  color: #1e40af; 
+}
+
+@media (max-width: 640px) {
+  .swiper-button-prev,
+  .swiper-button-next {
+    transform: scale(0.45);
+  }
+}
+
+.swiper-pagination-bullet {
+  background: #7fb1ed;
+  opacity: 0.6;
+  width: 8px;
+  height: 8px;
+}
+
+.swiper-pagination-bullet-active {
+  background: #2563eb;
+  opacity: 1;
+}

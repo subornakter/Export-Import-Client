@@ -41,7 +41,7 @@ const Footer = () => {
           />
           <h2 className="text-[22px] font-bold mb-2">Alpha Global Trade</h2>
        </div>
-          <p className="text-gray-200 text-sm pl-8 leading-relaxed">
+          <p className="text-gray-200 text-sm md:pl-8  leading-relaxed">
             A modern web platform where users can manage exports, browse global
             products, and import any product into their “My Imports” section
             with one click.

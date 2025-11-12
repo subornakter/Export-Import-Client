@@ -1,119 +1,111 @@
-// TeamSection.jsx
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Pagination, Navigation } from "swiper/modules";
-import { FaXTwitter } from "react-icons/fa6";
-// React Icons
 import { FaFacebookF, FaInstagram } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
+
 
 const teamMembers = [
   {
     name: "Jocelyn Schieffer",
     role: "Software Engineer",
-    description: "Specializes in building scalable web applications and improving UX design.",
+    description:
+      "Specializes in building scalable web applications and improving UX design.",
     img: "https://randomuser.me/api/portraits/women/1.jpg",
     social: { facebook: "#", twitter: "#", instagram: "#" },
   },
   {
     name: "John Doe",
     role: "Project Manager",
-    description: "Ensures projects are delivered on time and coordinates between teams.",
+    description:
+      "Ensures projects are delivered on time and coordinates between teams.",
     img: "https://randomuser.me/api/portraits/men/2.jpg",
     social: { facebook: "#", twitter: "#", instagram: "#" },
   },
   {
     name: "Jane Smith",
     role: "UX Designer",
-    description: "Focuses on creating intuitive interfaces that delight users.",
+    description:
+      "Focuses on creating intuitive interfaces that delight users.",
     img: "https://randomuser.me/api/portraits/women/3.jpg",
     social: { facebook: "#", twitter: "#", instagram: "#" },
   },
   {
     name: "Michael Brown",
     role: "Frontend Developer",
-    description: "Expert in React and building responsive front-end applications.",
+    description:
+      "Expert in React and building responsive front-end applications.",
     img: "https://randomuser.me/api/portraits/men/4.jpg",
     social: { facebook: "#", twitter: "#", instagram: "#" },
   },
   {
     name: "Emily Davis",
     role: "Backend Developer",
-    description: "Builds robust APIs and ensures database performance is top-notch.",
+    description:
+      "Builds robust APIs and ensures database performance is top-notch.",
     img: "https://randomuser.me/api/portraits/women/5.jpg",
-    social: { facebook: "#", twitter: "#", instagram: "#" },
-  },
-  {
-    name: "David Wilson",
-    role: "QA Engineer",
-    description: "Ensures high-quality products with automated and manual testing.",
-    img: "https://randomuser.me/api/portraits/men/6.jpg",
-    social: { facebook: "#", twitter: "#", instagram: "#" },
-  },
-  {
-    name: "Sarah Johnson",
-    role: "Data Analyst",
-    description: "Turns complex data into actionable insights for the team.",
-    img: "https://randomuser.me/api/portraits/women/7.jpg",
-    social: { facebook: "#", twitter: "#", instagram: "#" },
-  },
-  {
-    name: "Chris Lee",
-    role: "DevOps Engineer",
-    description: "Automates deployments and monitors infrastructure performance.",
-    img: "https://randomuser.me/api/portraits/men/8.jpg",
-    social: { facebook: "#", twitter: "#", instagram: "#" },
-  },
-  {
-    name: "Anna Kim",
-    role: "Product Owner",
-    description: "Leads product strategy and ensures alignment with business goals.",
-    img: "https://randomuser.me/api/portraits/women/9.jpg",
     social: { facebook: "#", twitter: "#", instagram: "#" },
   },
 ];
 
 const TeamSection = () => {
   return (
-    <div className="team-section py-10 px-5 bg-gray-50 text-center">
-      <h2 className="text-3xl font-bold mb-2">
-        Meet the Company<span className="text-blue-600"> team Members</span>
+    <section className="py-14 px-6 bg-gray-50 text-center">
+      {/* Header */}
+      <h2 className="text-3xl md:text-4xl font-bold mb-2">
+        Meet the Company <span className="text-blue-600">Team Members</span>
       </h2>
-      <p className="text-gray-600 mb-8">
-        Our talented team members bring their expertise and passion to every project.
+      <p className="text-gray-600 max-w-2xl mx-auto mb-10">
+        Our talented professionals bring their expertise and passion to every project.
       </p>
 
+      {/* Swiper Slider */}
       <Swiper
         modules={[Navigation, Pagination]}
         navigation
         pagination={{ clickable: true }}
-        spaceBetween={30}
-        slidesPerView={3}
         loop={true}
+        spaceBetween={20}
+        breakpoints={{
+          0: { slidesPerView: 1 },
+          640: { slidesPerView: 2 },
+          1024: { slidesPerView: 3 },
+        }}
+        className="pb-10"
       >
         {teamMembers.map((member, index) => (
           <SwiperSlide key={index}>
-            <div className="team-card bg-white rounded-lg p-5 shadow-md flex flex-col items-center">
+            <div className="bg-white rounded-xl shadow-lg p-6 flex flex-col items-center hover:shadow-2xl transition duration-300">
               <img
                 src={member.img}
                 alt={member.name}
-                className="w-32 h-32 mx-auto rounded-full mb-4"
+                className="w-28 h-28 object-cover rounded-full border-4 border-blue-500 mb-4"
               />
-              <h3 className="text-lg font-semibold mb-1">{member.name}</h3>
-              <p className="text-gray-500 mb-1">{member.role}</p>
-              <p className="text-gray-600 text-sm mb-2">{member.description}</p>
+              <h3 className="text-lg font-semibold text-gray-800 mb-1">{member.name}</h3>
+              <p className="text-blue-600 font-medium text-sm mb-2">{member.role}</p>
+              <p className="text-gray-600 text-sm mb-4">{member.description}</p>
 
-              {/* Social Links */}
-              <div className="flex justify-center gap-4 mt-2">
-                <a href={member.social.facebook} className="text-blue-600 text-xl hover:text-blue-800">
+              {/* Social Icons */}
+              <div className="flex justify-center gap-4 text-lg">
+                <a
+                  href={member.social.facebook}
+                  className="text-blue-600 hover:text-blue-800 transition"
+                >
                   <FaFacebookF />
                 </a>
-                <a href={member.social.twitter} className="text-blue-400 text-xl hover:text-blue-600">
-                 <FaXTwitter />
+                <a
+                  href={member.social.twitter}
+                  className="text-blue-400 hover:text-blue-600 transition"
+                >
+                  <FaXTwitter />
                 </a>
-                <a href={member.social.instagram} className="text-pink-500 text-xl hover:text-pink-700">
+                <a
+                  href={member.social.instagram}
+                  className="text-pink-500 hover:text-pink-700 transition"
+                >
                   <FaInstagram />
                 </a>
               </div>
@@ -121,8 +113,9 @@ const TeamSection = () => {
           </SwiperSlide>
         ))}
       </Swiper>
-    </div>
+    </section>
   );
 };
 
 export default TeamSection;
+

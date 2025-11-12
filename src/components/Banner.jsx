@@ -1,8 +1,8 @@
 import React from "react";
-
+import { Link } from "react-router";
 const Banner = () => {
   return (
-    <section className="relative bg-gradient-to-r from-[#0077B6] via-[#0096C7] to-[#CAF0F8] text-white py-20 px-6 md:px-20 flex flex-col md:flex-row items-center justify-between overflow-hidden">
+    <section className="relative bg-gradient-to-r from-[#0077B6] via-[#0096C7] to-[#CAF0F8] text-white py-20 px-6 md:pl-20  flex flex-col md:flex-row items-center justify-between overflow-hidden">
       {/* Background Overlay */}
       <div className="absolute inset-0 bg-black/30 z-0"></div>
 
@@ -17,12 +17,12 @@ const Banner = () => {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-          <button className="bg-yellow-400 text-black hover:bg-yellow-300 font-semibold px-6 py-3 rounded-2xl shadow-md transition-all duration-300">
+        <Link to='/allProducts'>  <button className="bg-yellow-400 text-black hover:bg-yellow-300 font-semibold px-6 py-3 rounded-2xl shadow-md transition-all duration-300">
             Explore Products
-          </button>
-          <button className="bg-transparent border-2 border-white hover:bg-white hover:text-blue-700 px-6 py-3 rounded-2xl font-semibold transition-all duration-300">
+          </button></Link>
+          <Link to='/myImports'><button className="bg-transparent border-2 border-white hover:bg-white hover:text-blue-700 px-6 py-3 rounded-2xl font-semibold transition-all duration-300">
             My Imports
-          </button>
+          </button></Link>
         </div>
       </div>
 
@@ -31,7 +31,7 @@ const Banner = () => {
         <img
           src="https://i.ibb.co.com/xKSHbQ7w/19962385-6206719-2.png" 
           alt="Export Import Trade"
-          className="w-full md:w-[500px] rounded-3xl shadow-2xl"
+          className="w-full md:w-[500px] h-auto object-cover"
         />
       </div>
     </section>
