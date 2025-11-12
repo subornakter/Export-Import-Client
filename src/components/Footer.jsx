@@ -39,7 +39,7 @@ const Footer = () => {
             alt="Import Export Hub Logo"
             className="w-15 h-12 "
           />
-          <h2 className="text-[22px] font-bold mb-2">Import Export Hub</h2>
+          <h2 className="text-[22px] font-bold mb-2">Alpha Global Trade</h2>
        </div>
           <p className="text-gray-200 text-sm pl-8 leading-relaxed">
             A modern web platform where users can manage exports, browse global
