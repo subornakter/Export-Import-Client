@@ -1,16 +1,48 @@
-# React + Vite
+#  Alpha Global Trade
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Alpha Global Trade** is a modern and intelligent web platform where users can **manage exports**, **browse global products**, and **import any product** into their personal **“My Imports”** section with one click.  
+It offers a smooth and secure experience for international traders, businesses, and buyers — all in one place.
 
-Currently, two official plugins are available:
+**Live Site URL:** [https://alpha-global-trade.web.app](https://alpha-global-trade.web.app)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+##  Key Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Global Product Management:** Explore thousands of import/export-ready products from multiple countries.  
+- **Personalized Imports:** Add products to your “My Imports” section instantly and manage them efficiently.  
+- **Real-Time Data Sync:** Automatically updates product quantity and import history across all users.  
+- **Elegant & Modern UI:** Built with Tailwind CSS and Framer Motion animations for a smooth visual experience.  
+- **Secure Authentication:** Firebase Auth ensures safe and verified access for all users.  
+- **Toast Notifications:** Instant feedback for every action — login, import, update, or delete.  
+- **Detailed Product View:** View images, price, origin, quantity, and rating before importing.  
+- **Dynamic Dashboard:** Personalized dashboard showing user imports, total quantity, and statistics.  
+- **RESTful API Integration:** Node.js & Express.js backend connected to MongoDB for robust data handling.  
+- **Fully Responsive Design:** Optimized for mobile, tablet, and desktop users.    
+- **Smart Search & Filter:** Quickly find specific products by productName.  
+- **Secure Storage:** All user import records are stored safely in MongoDB with authentication validation.  
+ 
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Tech Stack
+
+| Category | Technologies |
+|-----------|---------------|
+| Frontend | React.js, Tailwind CSS, Framer Motion |
+| Backend | Node.js, Express.js |
+| Database | MongoDB Atlas |
+| Authentication | Firebase Authentication |
+| Hosting | Netlify/ Vercel |
+| Version Control | Git & GitHub |
+
+---
+
+## ⚙️ Installation Guide
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/your-username/alpha-global-trade.git
+   git clone
+   
+
