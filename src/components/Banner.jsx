@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router";
 const Banner = () => {
   return (
-    <section className="relative w-max-7xl mx-auto  py-8 px-6 md:pl-20  flex flex-col md:flex-row items-center justify-between overflow-hidden">
+    <section className="relative max-w-7xl mx-auto  py-8 px-6 md:pl-20  flex flex-col md:flex-row items-center justify-between overflow-hidden">
       {/* Background Overlay */}
       <div className="absolute inset-0  z-0"></div>
 
