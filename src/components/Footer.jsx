@@ -97,7 +97,7 @@ const Footer = () => {
       {/* Footer Bottom */}
       <div className="border-t border-white/20 mt-10 pt-6 text-center text-gray-300 text-sm relative z-10">
         Copyright © {new Date().getFullYear()}{" "}
-        <span className="font-semibold text-white">Import Export Hub</span> |
+        <span className="font-semibold text-white">Alpha Global Trade</span> |
         All Rights Reserved
       </div>
     </footer>
