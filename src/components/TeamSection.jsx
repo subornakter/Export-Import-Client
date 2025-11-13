@@ -3,10 +3,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { Pagination, Navigation } from "swiper/modules";
+import { Pagination, Navigation, Autoplay } from "swiper/modules"; // ✅ Autoplay added
 import { FaFacebookF, FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
-
 
 const teamMembers = [
   {
@@ -29,7 +28,7 @@ const teamMembers = [
     name: "Jane Smith",
     role: "UX Designer",
     description:
-      "Focuses on creating intuitive interfaces that delight users.",
+      "Focuses on creating intuitive interfaces that delight users.Best UI/UX designer award 2023.",
     img: "https://randomuser.me/api/portraits/women/3.jpg",
     social: { facebook: "#", twitter: "#", instagram: "#" },
   },
@@ -53,10 +52,10 @@ const teamMembers = [
 
 const TeamSection = () => {
   return (
-    <section className="py-14 px-6 bg-gray-50 text-center">
+    <section className="py-14 px-6 max-w-7xl mx-auto   text-center">
       {/* Header */}
-      <h2 className="text-3xl md:text-4xl font-bold mb-2">
-        Meet the Company <span className="text-blue-600">Team Members</span>
+      <h2 className="text-2xl md:text-3xl font-bold mb-2">
+        Meet the Company <span className="text-pink-600">Team Members</span>
       </h2>
       <p className="text-gray-600 max-w-2xl mx-auto mb-10">
         Our talented professionals bring their expertise and passion to every project.
@@ -64,11 +63,16 @@ const TeamSection = () => {
 
       {/* Swiper Slider */}
       <Swiper
-        modules={[Navigation, Pagination]}
+        modules={[Navigation, Pagination, Autoplay]} // ✅ Autoplay included
         navigation
         pagination={{ clickable: true }}
         loop={true}
         spaceBetween={20}
+        autoplay={{
+          delay: 2500, // 2.5 seconds per slide
+          disableOnInteraction: false, // keeps autoplay after user interaction
+        }}
+        speed={1000} // smooth transition speed (1s)
         breakpoints={{
           0: { slidesPerView: 1 },
           640: { slidesPerView: 2 },
@@ -82,10 +86,14 @@ const TeamSection = () => {
               <img
                 src={member.img}
                 alt={member.name}
-                className="w-28 h-28 object-cover rounded-full border-4 border-blue-500 mb-4"
+                className="w-30 h-30 object-cover rounded-full border-2 border-pink-500 mb-4"
               />
-              <h3 className="text-lg font-semibold text-gray-800 mb-1">{member.name}</h3>
-              <p className="text-blue-600 font-medium text-sm mb-2">{member.role}</p>
+              <h3 className="text-lg font-semibold text-gray-800 mb-1">
+                {member.name}
+              </h3>
+              <p className="text-red-600 font-medium text-sm mb-2">
+                {member.role}
+              </p>
               <p className="text-gray-600 text-sm mb-4">{member.description}</p>
 
               {/* Social Icons */}
@@ -98,7 +106,7 @@ const TeamSection = () => {
                 </a>
                 <a
                   href={member.social.twitter}
-                  className="text-blue-400 hover:text-blue-600 transition"
+                  className=" transition"
                 >
                   <FaXTwitter />
                 </a>

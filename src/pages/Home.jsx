@@ -25,8 +25,13 @@ const Home = () => {
       <title>Alpha Global Trade - Home</title>
       <Banner />
 
-      <div className="text-center text-xl font-bold mt-10 mb-5">
-        Latest Products
+      <div className="text-center mt-10 mb-5">
+        <h1 className="text-3xl font-semibold "> Latest Products</h1>
+    
+        <p className="text-gray-500 mb-8">
+  Explore our newest arrivals — quality products sourced from trusted global partners.
+</p>
+
       </div>
 
       {/* Only product section will show loader */}
@@ -35,7 +40,7 @@ const Home = () => {
           <Loader />
         </div>
       ) : (
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 mt-10">
+        <div className="grid max-w-7xl mx-auto  grid-cols-1 lg:grid-cols-3 gap-3 mt-10">
           {products.map((product) => (
             <ProductCard key={product._id} product={product} />
           ))}

@@ -26,18 +26,18 @@ const socialLinks = [
 
 const Footer = () => {
   return (
-    <footer className="bg-gradient-to-r from-blue-900 via-cyan-800 to-sky-700 text-white py-14 relative overflow-hidden">
+    <footer className=" mt-15 bg-gradient-to-b from-gray-600 via-gray-800 to-gray-900 text-white py-14 relative overflow-hidden">
       {/* Subtle overlay */}
       <div className="absolute inset-0 bg-black/30 backdrop-blur-sm"></div>
 
-      <div className="relative container mx-auto px-6 grid md:grid-cols-4 gap-10 z-10">
+      <div className="relative  mx-auto px-6 grid md:grid-cols-4 gap-15 z-10">
         {/* Logo & Intro */}
         <div className=" ">
        <div className="flex  items-center">
            <img
             src="https://i.ibb.co.com/RTQjFFbp/e26-removebg-preview.png"
             alt="Import Export Hub Logo"
-            className="w-15 h-12 "
+            className="w-12 h-10 "
           />
           <h2 className="text-[22px] font-bold mb-2">Alpha Global Trade</h2>
        </div>

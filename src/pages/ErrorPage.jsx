@@ -18,7 +18,7 @@ const ErrorPage = () => {
         />
         <h1 className="font-bold text-3xl mb-2">Oops, page not found!</h1>
         <p className="text-gray-500 txt-sm">The page you are looking for is not available.</p>
-         <Link to='/'><button className='bg-[#1096B5] text-white flex items-center gap-1 rounded-md p-2 font-bold mt-5'>Go Back <FaArrowRight /></button></Link>
+         <Link to='/'><button className='btn-primary text-white flex items-center gap-1 rounded-md p-2 font-bold mt-5'>Go Back <FaArrowRight /></button></Link>
       </div>
 
       <Footer />

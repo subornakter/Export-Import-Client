@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router";
 import { AuthContext } from "../context/AuthContext";
 import { toast } from "react-toastify";
-
+import { IoMdPricetags } from "react-icons/io";
 const ProductDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -114,7 +114,7 @@ const ProductDetails = () => {
             <img
               src={product.productImage}
               alt={product.productName}
-              className="rounded-xl w-full object-cover shadow-md"
+              className=" w-full object-cover "
             />
           </div>
 
@@ -122,23 +122,33 @@ const ProductDetails = () => {
             <h1 className="text-3xl font-bold text-gray-800">
               {product.productName}
             </h1>
-
-            <p className="text-gray-600 text-lg">{product.description}</p>
-
-            <div className="grid grid-cols-2 gap-4 text-gray-700 mt-4">
-              <p>
-                <span className="font-semibold">Price:</span> ${product.price}
+ <div className="border-t border-gray-300 my-3"></div>
+        <h1 className="text-xl font-semibold mb-2">Description:</h1>
+            <p className="text-gray-600 text-md">{product.description}</p>
+ 
+  <div className="border-t border-gray-300 my-3"></div>
+              <div className="flex items-center gap-1">
+                <img className="w-6 h-6" src="https://i.ibb.co.com/VY8P2dkg/location-pin-with-circle-earth.png" alt="" />
+                <p className="text-pink-500 font-bold">
+                <span className="font-light  ">OriginCountry:</span> {product.originCountry}
               </p>
-              <p>
-                <span className="font-semibold">Origin:</span> {product.originCountry}
-              </p>
-              <p>
-                <span className="font-semibold">Rating:</span> ⭐ {product.rating}
-              </p>
-              <p>
-                <span className="font-semibold">Available:</span>{" "}
+              </div>
+             <div className="flex items-center gap-1">
+              <img className="w-6 h-6" src="https://i.ibb.co.com/ZpX3HDd4/quantity-icon-9.png" alt="" />
+               <p className="font-bold">
+                <span className="font-semibold text-[#fcbf49]">AvailableQuantity:</span>{" "}
                 {product.availableQuantity}
               </p>
+             </div>
+            <div className="grid grid-cols-2 gap-4 font-bold text-gray-700 mt-4">
+              <p className="flex">
+                <span className="font-semibold flex items-center gap-1"><IoMdPricetags />Price: </span> <span className="text-[#4895ef]"> ${product.price}</span>
+              </p>
+  
+              <p>
+                ⭐⭐⭐⭐⭐ {product.rating}
+              </p>
+              
             </div>
 
             <div className="flex gap-4 mt-6">

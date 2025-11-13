@@ -23,7 +23,7 @@ const AllProducts = () => {
   };
 
   return (
-    <div>
+    <div >
       <div className="text-2xl text-center font-bold">All Products</div>
       <title>Alpha Global Trade - All Products</title>
       <p className="text-center">Explore world best Imported Products.</p>
@@ -57,7 +57,7 @@ const AllProducts = () => {
           <Loader />
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mt-10">
+        <div className="  max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mt-10">
           {products.length > 0 ? (
             products.map((product) => (
               <ProductCard key={product._id} product={product} />

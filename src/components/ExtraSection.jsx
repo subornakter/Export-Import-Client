@@ -40,7 +40,7 @@ const ExtraSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.2 }}
               viewport={{ once: true }}
-              className="bg-gradient-to-r from-blue-500/70 to-yellow-400/60 backdrop-blur-lg text-white py-10 rounded-2xl shadow-lg hover:scale-105 transition-transform duration-300"
+              className="bg-gradient-to-r from-blue-400/70 to-yellow-300/60 backdrop-blur-lg text-white py-10 rounded-2xl shadow-lg hover:scale-105 transition-transform duration-300"
             >
               <div className="flex justify-center mb-4">
                 <img

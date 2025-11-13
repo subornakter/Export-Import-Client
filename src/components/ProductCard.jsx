@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-
+import icon  from '../assets/icon-ratings.png'
 export const ProductCard = ({product}) => {
     const {productName, productImage, originCountry, rating, _id, availableQuantity,price} = product;
   return (
@@ -20,23 +20,26 @@ export const ProductCard = ({product}) => {
         </p>
       <div className="flex justify-between">
           <p className="font-bold text-lg text-primary">
-            
+            <span className="font-semibold text-gray-600">Price: </span>
             ${price}
         </p>
-        <p className="text-sm font-bold text-base-content/70"><span className="font-semibold">rating: </span>{rating}</p>
+        
+    <div className='flex gap-1 mb-2'>
+                   <img className='w-4 h-5 inline-block mr-1' src={icon} alt="" />
+               <img className='w-4 h-5 inline-block mr-1' src={icon} alt="" />
+                <img className='w-4 h-5 inline-block mr-1' src={icon} alt="" />
+           <img className='w-4 h-5 inline-block mr-1' src={icon} alt="" />
+       <img className='w-4 h-5 inline-block mr-1' src={icon} alt="" />
+   
+                <span className='font-bold'>{rating}</span>
+                 </div>
+        {/* <p className="text-sm font-bold text-base-content/70"><span className="font-semibold">rating: </span>{rating}</p> */}
       </div>
         <div className="card-actions justify-between items-center mt-4">
           <div className="flex gap-4 text-sm text-base-content/60">
-            {/* <span className="flex items-center gap-1">
-              <Eye className="w-4 h-4" />
-              {views}
-            </span> */}
-            {/* <span className="flex items-center gap-1">
-              <Heart className="w-4 h-4" />
-              {likes}
-            </span> */}
+          
           </div>
-          <Link to={`/product-details/${_id}`} className="btn rounded-full bg-linear-to-r from-pink-500 to-red-600 hover:from-red-600 hover:to-pink-500 text-white w-full btn-sm">See Details</Link>
+          <Link to={`/product-details/${_id}`} className="btn rounded-md bg-linear-to-r from-pink-500 to-red-600 hover:from-red-600 hover:to-pink-500 text-white w-full btn-sm">See Details</Link>
         </div>
       </div>
     </div>

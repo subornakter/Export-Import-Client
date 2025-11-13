@@ -23,7 +23,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="bg-base-100 flex justify-between items-center py-2 px-4 border-b border-slate-300 sticky top-0 z-50">
+    <div className="bg-base-100  mx-auto flex justify-between items-center py-2 px-10 border-b border-slate-300 sticky top-0 z-50">
 
       {/* === Left: Hamburger + Company Name + Logo === */}
       <div className="flex items-center gap-3">
@@ -36,10 +36,10 @@ const Navbar = () => {
         </button>
 
         {/* Logo + Company Name */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center">
           {/* Logo hidden on mobile */}
           <img
-            className="hidden md:block h-10 w-10 object-contain"
+            className="hidden md:block h-12 w-15 object-contain"
             src="https://i.ibb.co.com/RTQjFFbp/e26-removebg-preview.png"
             alt="Logo"
           />
@@ -78,7 +78,7 @@ const Navbar = () => {
             {/* Profile Dropdown */}
             <div className="dropdown dropdown-end z-50">
               <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                <div className="w-9 border-2 border-[#1096B5] rounded-full">
+                <div className="w-9 border-2 border-red-600 rounded-full">
                   <img
                     alt={user?.displayName ?? "User"}
                     src={user?.photoURL ?? "https://via.placeholder.com/40"}
@@ -101,7 +101,7 @@ const Navbar = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link to="/settings" className="flex items-center gap-2">
+                  <Link to="/" className="flex items-center gap-2">
                     <FaGear /> Settings
                   </Link>
                 </li>

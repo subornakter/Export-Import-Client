@@ -133,8 +133,9 @@ const handleDelete = (id) => {
               </figure>
               <div className="card-body">
                 <h2 className="card-title text-xl">{product.productName}</h2>
-                <p className="text-gray-600 text-sm">{product.originCountry}</p>
-                <p className="font-bold text-pink-600">${product.price}</p>
+                <p className=" text-sm">OriginCountry: <span className="font-bold">{product.originCountry}</span></p>
+                <p className="font-bold text-pink-600">
+                  <span className="text-gray-600">Price: </span>${product.price}</p>
                 <p className="text-sm">
                   <span className="font-semibold">Rating:</span> ⭐ {product.rating}
                 </p>
@@ -146,7 +147,7 @@ const handleDelete = (id) => {
                 <div className="flex justify-between mt-4">
                   <button
                     onClick={() => handleDelete(product._id)}
-                    className="btn btn-sm bg-red-500 text-white rounded-full hover:bg-red-600"
+                    className="btn btn-md btn-primary text-white rounded-md hover:bg-red-600"
                   >
                     Delete
                   </button>
@@ -156,7 +157,7 @@ const handleDelete = (id) => {
                       setSelectedProduct(product);
                       setIsModalOpen(true);
                     }}
-                    className="btn btn-sm bg-pink-500 text-white rounded-full hover:bg-pink-600"
+                    className="btn btn-md btn-primary text-white rounded-md hover:bg-pink-600"
                   >
                     Update
                   </button>
