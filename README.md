@@ -3,7 +3,7 @@
 **Alpha Global Trade** is a modern and intelligent web platform where users can **manage exports**, **browse global products**, and **import any product** into their personal **“My Imports”** section with one click.  
 It offers a smooth and secure experience for international traders, businesses, and buyers — all in one place.
 
-**Live Site URL:** [https://alpha-global-trade.web.app](https://alpha-global-trade.web.app)
+**Live Site URL:** https://incredible-nasturtium-adfeb6.netlify.app
 
 ---
 
