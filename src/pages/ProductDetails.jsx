@@ -14,7 +14,7 @@ const ProductDetails = () => {
   const [importQty, setImportQty] = useState("");
 
   useEffect(() => {
-    fetch(`http://localhost:5000/allProducts/${id}`)
+    fetch(`https://import-export-server-lac.vercel.app/allProducts/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setProduct(data);
@@ -25,11 +25,11 @@ const ProductDetails = () => {
         toast.error("Failed to load product details!");
       });
   }, [id]);
-   useEffect(() => {
-  if (product) {
-    document.title = `ProductDetails | ${product.productName}`;
-  }
-}, [product]);
+  useEffect(() => {
+    if (product) {
+      document.title = `ProductDetails | ${product.productName}`;
+    }
+  }, [product]);
 
   const handleImport = (e) => {
     e.preventDefault();
@@ -61,8 +61,7 @@ const ProductDetails = () => {
 
     // const toastId = toast.loading("Importing product...");
 
- 
-    fetch("http://localhost:5000/myImports", {
+    fetch("https://import-export-server-lac.vercel.app/myImports", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(importData),
@@ -70,21 +69,24 @@ const ProductDetails = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-      
-        return fetch(`http://localhost:5000/allProducts/${product._id}`, {
-          method: "PATCH",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ quantity }),
-        });
+
+        return fetch(
+          `https://import-export-server-lac.vercel.app/allProducts/${product._id}`,
+          {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ quantity }),
+          }
+        );
       })
       .then((res) => res.json())
       .then(() => {
-       toast.success("Product Imported SuccessFully")
+        toast.success("Product Imported SuccessFully");
 
         // Update local state instantly
         setProduct((prev) => ({
           ...prev,
-          availableQuantity: Number(prev.availableQuantity )- quantity,
+          availableQuantity: Number(prev.availableQuantity) - quantity,
         }));
 
         setImportQty("");
@@ -97,14 +99,16 @@ const ProductDetails = () => {
   };
 
   if (loading) {
-    return <div className="text-center mt-10 text-lg font-semibold">Loading...</div>;
+    return (
+      <div className="text-center mt-10 text-lg font-semibold">Loading...</div>
+    );
   }
 
   if (!product) {
-    return <div className="text-center mt-10 text-red-500">Product not found.</div>;
+    return (
+      <div className="text-center mt-10 text-red-500">Product not found.</div>
+    );
   }
-
-
 
   return (
     <div className="max-w-5xl mx-auto p-6 my-8">
@@ -122,33 +126,45 @@ const ProductDetails = () => {
             <h1 className="text-3xl font-bold text-gray-800">
               {product.productName}
             </h1>
- <div className="border-t border-gray-300 my-3"></div>
-        <h1 className="text-xl font-semibold mb-2">Description:</h1>
+            <div className="border-t border-gray-300 my-3"></div>
+            <h1 className="text-xl font-semibold mb-2">Description:</h1>
             <p className="text-gray-600 text-md">{product.description}</p>
- 
-  <div className="border-t border-gray-300 my-3"></div>
-              <div className="flex items-center gap-1">
-                <img className="w-6 h-6" src="https://i.ibb.co.com/VY8P2dkg/location-pin-with-circle-earth.png" alt="" />
-                <p className="text-pink-500 font-bold">
-                <span className="font-light  ">OriginCountry:</span> {product.originCountry}
+
+            <div className="border-t border-gray-300 my-3"></div>
+            <div className="flex items-center gap-1">
+              <img
+                className="w-6 h-6"
+                src="https://i.ibb.co.com/VY8P2dkg/location-pin-with-circle-earth.png"
+                alt=""
+              />
+              <p className="text-pink-500 font-bold">
+                <span className="font-light  ">OriginCountry:</span>{" "}
+                {product.originCountry}
               </p>
-              </div>
-             <div className="flex items-center gap-1">
-              <img className="w-6 h-6" src="https://i.ibb.co.com/ZpX3HDd4/quantity-icon-9.png" alt="" />
-               <p className="font-bold">
-                <span className="font-semibold text-[#fcbf49]">AvailableQuantity:</span>{" "}
+            </div>
+            <div className="flex items-center gap-1">
+              <img
+                className="w-6 h-6"
+                src="https://i.ibb.co.com/ZpX3HDd4/quantity-icon-9.png"
+                alt=""
+              />
+              <p className="font-bold">
+                <span className="font-semibold text-[#fcbf49]">
+                  AvailableQuantity:
+                </span>{" "}
                 {product.availableQuantity}
               </p>
-             </div>
+            </div>
             <div className="grid grid-cols-2 gap-4 font-bold text-gray-700 mt-4">
               <p className="flex">
-                <span className="font-semibold flex items-center gap-1"><IoMdPricetags />Price: </span> <span className="text-[#4895ef]"> ${product.price}</span>
+                <span className="font-semibold flex items-center gap-1">
+                  <IoMdPricetags />
+                  Price:{" "}
+                </span>{" "}
+                <span className="text-[#4895ef]"> ${product.price}</span>
               </p>
-  
-              <p>
-                ⭐⭐⭐⭐⭐ {product.rating}
-              </p>
-              
+
+              <p>⭐⭐⭐⭐⭐ {product.rating}</p>
             </div>
 
             <div className="flex gap-4 mt-6">

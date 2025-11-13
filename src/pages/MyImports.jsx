@@ -12,7 +12,9 @@ const MyImports = () => {
 
   useEffect(() => {
     if (!user?.email) return;
-    fetch(`http://localhost:5000/myImports?email=${user.email}`)
+    fetch(
+      `https://import-export-server-lac.vercel.app/myImports?email=${user.email}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setImports(data);
@@ -22,7 +24,9 @@ const MyImports = () => {
   }, [user]);
 
   const handleRemove = (id) => {
-    fetch(`http://localhost:5000/myImports/${id}`, { method: "DELETE" })
+    fetch(`https://import-export-server-lac.vercel.app/myImports/${id}`, {
+      method: "DELETE",
+    })
       .then((res) => res.json())
       .then((data) => {
         if (data.deletedCount > 0) {
@@ -85,7 +89,8 @@ const MyImports = () => {
 
                 <div className="flex justify-between items-center mt-3">
                   <p className="text-lg font-bold text-pink-600">
-                    <span className="text-gray-600">Price: </span>${product.price}
+                    <span className="text-gray-600">Price: </span>$
+                    {product.price}
                   </p>
 
                   {/* Beautiful gradient See Details button */}
@@ -114,4 +119,3 @@ const MyImports = () => {
 };
 
 export default MyImports;
-

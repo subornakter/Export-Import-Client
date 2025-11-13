@@ -13,7 +13,9 @@ const AllProducts = () => {
     const search_text = e.target.search.value.trim();
     if (!search_text) return;
     setLoading(true);
-    fetch(`http://localhost:5000/search?search=${search_text}`)
+    fetch(
+      `https://import-export-server-lac.vercel.app/search?search=${search_text}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setProducts(data);
@@ -23,11 +25,14 @@ const AllProducts = () => {
   };
 
   return (
-    <div >
+    <div>
       <div className="text-2xl text-center font-bold">All Products</div>
       <title>Alpha Global Trade - All Products</title>
       <p className="text-center">Explore world best Imported Products.</p>
-      <form onSubmit={handleSearch} className="mt-5 mb-10 flex gap-2 justify-center">
+      <form
+        onSubmit={handleSearch}
+        className="mt-5 mb-10 flex gap-2 justify-center"
+      >
         <label className="input rounded-md">
           <svg
             className="h-[1em] opacity-50"

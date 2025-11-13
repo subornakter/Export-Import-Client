@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { toast } from "react-toastify";
 import Loader from "../components/Loading";
-  import Swal from "sweetalert2";
+import Swal from "sweetalert2";
 const MyExports = () => {
   const { user } = useContext(AuthContext);
   const [myExports, setMyExports] = useState([]);
@@ -10,10 +10,12 @@ const MyExports = () => {
   const [selectedProduct, setSelectedProduct] = useState(null); // For update modal
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // 🔹 Fetch all exports by logged-in user
+
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:5000/myExports?email=${user.email}`)
+      fetch(
+        `https://import-export-server-lac.vercel.app/myExports?email=${user.email}`
+      )
         .then((res) => res.json())
         .then((data) => {
           setMyExports(data);
@@ -23,52 +25,40 @@ const MyExports = () => {
     }
   }, [user]);
 
-  // 🔹 Handle Delete
-  // const handleDelete = (id) => {
-  //   if (!confirm("Are you sure you want to delete this product?")) return;
 
-  //   fetch(`http://localhost:5000/myExports/${id}`, { method: "DELETE" })
-  //     .then((res) => res.json())
-  //     .then(() => {
-  //       toast.success("Product deleted successfully!");
-  //       setMyExports((prev) => prev.filter((p) => p._id !== id));
-  //     })
-  //     .catch(() => toast.error("Failed to delete product"));
-  // };
-
-
-const handleDelete = (id) => {
-  Swal.fire({
-    title: "Are you sure?",
-    text: "You won't be able to revert this!",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#3085d6",
-    cancelButtonColor: "#d33",
-    confirmButtonText: "Yes, delete it!",
-  }).then((result) => {
-    if (result.isConfirmed) {
-      fetch(`http://localhost:5000/myExports/${id}`, { method: "DELETE" })
-        .then((res) => res.json())
-        .then(() => {
-          setMyExports((prev) => prev.filter((p) => p._id !== id));
-          Swal.fire({
-            title: "Deleted!",
-            text: "Your product has been deleted.",
-            icon: "success",
-          });
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`https://import-export-server-lac.vercel.app/myExports/${id}`, {
+          method: "DELETE",
         })
-        .catch(() => {
-          Swal.fire({
-            title: "Error!",
-            text: "Failed to delete product.",
-            icon: "error",
+          .then((res) => res.json())
+          .then(() => {
+            setMyExports((prev) => prev.filter((p) => p._id !== id));
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your product has been deleted.",
+              icon: "success",
+            });
+          })
+          .catch(() => {
+            Swal.fire({
+              title: "Error!",
+              text: "Failed to delete product.",
+              icon: "error",
+            });
           });
-        });
-    }
-  });
-};
-
+      }
+    });
+  };
 
   // 🔹 Handle Update
   const handleUpdateSubmit = (e) => {
@@ -85,11 +75,14 @@ const handleDelete = (id) => {
       description: form.description.value,
     };
 
-    fetch(`http://localhost:5000/myExports/${selectedProduct._id}`, {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(updatedData),
-    })
+    fetch(
+      `https://import-export-server-lac.vercel.app/myExports/${selectedProduct._id}`,
+      {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(updatedData),
+      }
+    )
       .then((res) => res.json())
       .then(() => {
         toast.success("Product updated successfully!");
@@ -110,8 +103,10 @@ const handleDelete = (id) => {
 
   return (
     <div className="max-w-6xl mx-auto p-6">
-      <title>Alpha Global Trade - MyExports</title>  
-      <h2 className="text-3xl font-bold text-center mb-8">My Exported Products</h2>
+      <title>Alpha Global Trade - MyExports</title>
+      <h2 className="text-3xl font-bold text-center mb-8">
+        My Exported Products
+      </h2>
 
       {myExports.length === 0 ? (
         <p className="text-center text-gray-500">
@@ -133,11 +128,16 @@ const handleDelete = (id) => {
               </figure>
               <div className="card-body">
                 <h2 className="card-title text-xl">{product.productName}</h2>
-                <p className=" text-sm">OriginCountry: <span className="font-bold">{product.originCountry}</span></p>
+                <p className=" text-sm">
+                  OriginCountry:{" "}
+                  <span className="font-bold">{product.originCountry}</span>
+                </p>
                 <p className="font-bold text-pink-600">
-                  <span className="text-gray-600">Price: </span>${product.price}</p>
+                  <span className="text-gray-600">Price: </span>${product.price}
+                </p>
                 <p className="text-sm">
-                  <span className="font-semibold">Rating:</span> ⭐ {product.rating}
+                  <span className="font-semibold">Rating:</span> ⭐{" "}
+                  {product.rating}
                 </p>
                 <p className="text-sm">
                   <span className="font-semibold">Available:</span>{" "}
@@ -172,7 +172,9 @@ const handleDelete = (id) => {
       {isModalOpen && selectedProduct && (
         <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded-2xl shadow-xl w-[90%] max-w-lg">
-            <h3 className="text-xl font-bold mb-4 text-center">Update Product</h3>
+            <h3 className="text-xl font-bold mb-4 text-center">
+              Update Product
+            </h3>
 
             <form onSubmit={handleUpdateSubmit} className="space-y-3">
               <div>

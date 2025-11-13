@@ -20,14 +20,14 @@ const AddExport = () => {
       addedBy: user?.email || "anonymous",
     };
 
-    fetch("http://localhost:5000/allProducts", {
+    fetch("https://import-export-server-lac.vercel.app/allProducts", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newProduct),
     })
       .then((res) => res.json())
       .then((data) => {
-           toast.success("Successfully added!")
+        toast.success("Successfully added!");
         //    Navigate("/allProducts")
         console.log(data);
       })
@@ -149,5 +149,3 @@ const AddExport = () => {
 };
 
 export default AddExport;
-
-

@@ -15,79 +15,68 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
-    errorElement: <ErrorPage/>,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
-        element: <Home/>,
-           loader: () => fetch('http://localhost:5000/latestProducts'),
+        element: <Home />,
+        loader: () =>
+          fetch("https://import-export-server-lac.vercel.app/latestProducts"),
       },
       {
         path: "/allProducts",
         element: <AllProducts />,
-       loader: () => fetch('http://localhost:5000/allProducts'),
+        loader: () =>
+          fetch("https://import-export-server-lac.vercel.app/allProducts"),
       },
       {
         path: "/profile",
-        element: 
-         
-            <Profile/>
-          
-        ,
+        element: <Profile />,
       },
       {
         path: "/addExport",
-        element: 
-         
-         (
+        element: (
           <PrivateRoute>
             <AddExport />
           </PrivateRoute>
         ),
-          
-        
       },
       {
         path: "/product-details/:id",
         element: (
-            <PrivateRoute>
-            <ProductDetails/>
-            </PrivateRoute>
- 
-       
+          <PrivateRoute>
+            <ProductDetails />
+          </PrivateRoute>
         ),
       },
 
-       {
+      {
         path: "/myImports",
         element: (
           <PrivateRoute>
-            <MyImports/>
+            <MyImports />
           </PrivateRoute>
-            
         ),
       },
 
-       {
+      {
         path: "/myExports",
         element: (
-          
           <PrivateRoute>
-            <MyExports/>
+            <MyExports />
           </PrivateRoute>
-         
         ),
       },
 
-    //     {
-    //     path: "/update-product/:id",
-    //     element: (
-    //       <PrivateRoute>
-    //         <UpdateProduct />
-    //       </PrivateRoute>
-    //     ),
-          
-    //   },
+      //     {
+      //     path: "/update-product/:id",
+      //     element: (
+      //       <PrivateRoute>
+      //         <UpdateProduct />
+      //       </PrivateRoute>
+      //     ),
+
+      //   },
       {
         path: "/login",
         element: <Login />,
