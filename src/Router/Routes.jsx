@@ -11,6 +11,11 @@ import MyImports from "../pages/MyImports";
 import MyExports from "../pages/MyExports";
 import PrivateRoute from "./PrivateRoute";
 import ErrorPage from "../pages/ErrorPage";
+import Contact from "../pages/Contact";
+import BlogPage from "../pages/BlogPage";
+import Statistics from "../pages/Statistics";
+import AdminRoute from "./AdminRoute";
+import DashboardLayout from "../layout/DashBoardLayout";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -34,39 +39,47 @@ export const router = createBrowserRouter([
         element: <Profile />,
       },
       {
-        path: "/addExport",
-        element: (
-          <PrivateRoute>
-            <AddExport />
-          </PrivateRoute>
-        ),
+        path: "/contact",
+        element: <Contact />,
       },
+       {
+        path: "/blog",
+        element: <BlogPage />,
+      },
+      // {
+      //   path: "/addExport",
+      //   element: (
+      //     <PrivateRoute>
+      //       <AddExport />
+      //     </PrivateRoute>
+      //   ),
+      // },
       {
         path: "/product-details/:id",
         element: (
-          <PrivateRoute>
+          
             <ProductDetails />
-          </PrivateRoute>
+        
         ),
       },
 
-      {
-        path: "/myImports",
-        element: (
-          <PrivateRoute>
-            <MyImports />
-          </PrivateRoute>
-        ),
-      },
+      // {
+      //   path: "/myImports",
+      //   element: (
+      //     <PrivateRoute>
+      //       <MyImports />
+      //     </PrivateRoute>
+      //   ),
+      // },
 
-      {
-        path: "/myExports",
-        element: (
-          <PrivateRoute>
-            <MyExports />
-          </PrivateRoute>
-        ),
-      },
+      // {
+      //   path: "/myExports",
+      //   element: (
+      //     <PrivateRoute>
+      //       <MyExports />
+      //     </PrivateRoute>
+      //   ),
+      // },
 
       //     {
       //     path: "/update-product/:id",
@@ -84,6 +97,53 @@ export const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register />,
+      },
+    ],
+  },
+
+    {
+    path: "/dashboard",
+    element: (
+      <PrivateRoute>
+        <DashboardLayout/>
+      </PrivateRoute>
+    ),
+    children: [
+      {
+        index: true,
+        element: (
+          <PrivateRoute>
+           <Statistics></Statistics>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "profile",
+        element: <Profile />,
+      },
+
+      /* ===== USER ===== */
+      {
+        path: "my-imports",
+        element: <MyImports />,
+      },
+
+      /* ===== ADMIN ===== */
+      {
+        path: "my-exports",
+        element: (
+          <AdminRoute>
+            <MyExports />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "add-export",
+        element: (
+          <AdminRoute>
+            <AddExport />
+          </AdminRoute>
+        ),
       },
     ],
   },

@@ -3,7 +3,7 @@ import { AuthContext } from "../context/AuthContext";
 import { toast } from "react-toastify";
 import { Link } from "react-router";
 import Loader from "../components/Loading";
-import { motion } from "framer-motion";
+import { FaTrashAlt, FaEye } from "react-icons/fa";
 
 const MyImports = () => {
   const { user } = useContext(AuthContext);
@@ -42,8 +42,6 @@ const MyImports = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 mt-10">
       <title>Alpha Global Trade - MyImports</title>
-
-      {/* Page title */}
       <div className="text-center mb-6">
         <h2 className="text-3xl font-bold text-center">My Imported Products</h2>
       </div>
@@ -51,71 +49,107 @@ const MyImports = () => {
       {imports.length === 0 ? (
         <p className="text-center text-gray-500">No imports yet.</p>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {imports.map((product, index) => (
-            <motion.div
-              key={product._id}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.03 }}
-              className="card bg-base-100 shadow-lg border border-gray-200 hover:shadow-2xl transition-all rounded-xl"
-            >
-              <figure className="h-56 overflow-hidden">
-                <motion.img
+        <>
+          {/* Desktop Table */}
+          <div className="hidden md:block overflow-x-auto">
+            <table className="table table-zebra w-full">
+              <thead className="bg-base-200">
+                <tr>
+                  <th>#</th>
+                  <th>Image</th>
+                  <th>Name</th>
+                  <th>Origin</th>
+                  <th>Quantity</th>
+                  <th>Rating</th>
+                  <th>Price</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {imports.map((product, index) => (
+                  <tr key={product._id}>
+                    <td>{index + 1}</td>
+                    <td>
+                      <img
+                        src={product.productImage}
+                        alt={product.productName}
+                        className="w-16 h-16 rounded object-cover"
+                      />
+                    </td>
+                    <td className="font-semibold">{product.productName}</td>
+                    <td>{product.originCountry}</td>
+                    <td>{product.quantity}</td>
+                    <td>⭐ {product.rating}</td>
+                    <td className="text-pink-600 font-bold">${product.price}</td>
+                    <td className="flex gap-2">
+                      <Link
+                        to={`/product-details/${product.productId}`}
+                        className="btn btn-sm btn-primary flex items-center gap-2 text-white"
+                      >
+                        <FaEye />
+                        Details
+                      </Link>
+                      <button
+                        onClick={() => handleRemove(product._id)}
+                        className="btn btn-sm btn-primary flex items-center gap-2 text-white"
+                      >
+                        <FaTrashAlt />
+                        Remove
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Mobile Cards */}
+          <div className="md:hidden grid grid-cols-1 gap-4">
+            {imports.map((product) => (
+              <div
+                key={product._id}
+                className="card bg-base-100 shadow-md rounded-xl border border-gray-200 p-4"
+              >
+                <img
                   src={product.productImage}
                   alt={product.productName}
-                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                  className="w-full h-48 object-cover rounded-lg mb-3"
                 />
-              </figure>
-
-              <div className="card-body p-5">
-                <h2 className="card-title text-lg font-bold">
-                  {product.productName}
-                </h2>
+                <h3 className="font-bold text-lg">{product.productName}</h3>
                 <p className="text-sm text-gray-600">
-                  <span className="font-semibold">Origin Country:</span>{" "}
-                  {product.originCountry}
+                  <span className="font-semibold">Origin:</span> {product.originCountry}
                 </p>
                 <p className="text-sm text-gray-600">
-                  <span className="font-semibold">Imported Quantity:</span>{" "}
-                  {product.quantity}
+                  <span className="font-semibold">Quantity:</span> {product.quantity}
                 </p>
                 <p className="text-sm text-gray-600">
-                  <span className="font-semibold">Rating:</span> ⭐{" "}
-                  {product.rating}
+                  <span className="font-semibold">Rating:</span> ⭐ {product.rating}
                 </p>
-
-                <div className="flex justify-between items-center mt-3">
-                  <p className="text-lg font-bold text-pink-600">
-                    <span className="text-gray-600">Price: </span>$
-                    {product.price}
-                  </p>
-
-                  {/* Beautiful gradient See Details button */}
+                <p className="text-sm text-pink-600 font-bold">
+                  <span className="font-semibold text-gray-600">Price:</span> ${product.price}
+                </p>
+                <div className="flex gap-2 mt-3">
                   <Link
                     to={`/product-details/${product.productId}`}
-                    className="btn btn-sm bg-gradient-to-r from-pink-500 to-red-600 text-white rounded-md font-semibold transition-all duration-300 hover:from-red-500 hover:to-pink-600 hover:scale-105"
+                    className="btn btn-sm btn-primary flex-1 flex items-center gap-2 text-white justify-center"
                   >
-                    See Details
+                    <FaEye /> Details
                   </Link>
+                  <button
+                    onClick={() => handleRemove(product._id)}
+                    className="btn btn-sm btn-error flex-1 flex items-center gap-2 text-white justify-center"
+                  >
+                    <FaTrashAlt /> Remove
+                  </button>
                 </div>
-
-                <motion.button
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => handleRemove(product._id)}
-                  className="btn btn-sm w-full mt-3 rounded-md btn-primary text-white transition-all duration-300"
-                >
-                  Remove
-                </motion.button>
               </div>
-            </motion.div>
-          ))}
-        </div>
+            ))}
+          </div>
+        </>
       )}
     </div>
   );
 };
 
 export default MyImports;
+

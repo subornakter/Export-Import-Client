@@ -1,22 +1,22 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { toast } from "react-toastify";
+import useRole from "../hooks/useRole"; // make sure the path is correct
 
-const profile = () => {
+const Profile = () => {
   const { user, updateUserProfile } = useContext(AuthContext);
+  const { role, roleLoading } = useRole();
 
   const [displayName, setDisplayName] = useState(user?.displayName || "");
   const [photoURL, setPhotoURL] = useState(user?.photoURL || "");
 
   const handleUpdate = async (e) => {
     e.preventDefault();
-    // const toastId = toast.loading("Updating profile...");
-
     try {
       await updateUserProfile(displayName, photoURL);
-          toast.success("Profile updated successfully!", );
+      toast.success("Profile updated successfully!");
     } catch (error) {
-        toast.error("Failed to update profile: " + error.message);
+      toast.error("Failed to update profile: " + error.message);
     }
   };
 
@@ -26,12 +26,26 @@ const profile = () => {
       <div className="card bg-base-100 w-full max-w-sm shadow-xl p-6">
         <h2 className="text-2xl font-semibold text-center mb-4">Update Profile</h2>
 
-        <div className="flex justify-center mb-4">
+        <div className="flex flex-col justify-center items-center mb-4">
           <img
             src={photoURL || "https://via.placeholder.com/80"}
             alt="Profile"
             className="w-20 h-20 rounded-full border-2 border-blue-400"
           />
+          {/* Role Badge */}
+          {!roleLoading && (
+            <span
+              className={`mt-2 px-3 py-1 text-sm font-medium rounded-full text-white ${
+                role === "admin"
+                  ? "bg-red-500"
+                  : role === "moderator"
+                  ? "bg-yellow-500"
+                  : "bg-blue-500"
+              }`}
+            >
+              {role}
+            </span>
+          )}
         </div>
 
         <form onSubmit={handleUpdate} className="space-y-3">
@@ -67,5 +81,6 @@ const profile = () => {
   );
 };
 
-export default profile;
+export default Profile;
+
 

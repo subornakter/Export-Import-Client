@@ -5,6 +5,10 @@ import Banner from "../components/Banner";
 import ExtraSection from "../components/ExtraSection";
 import Loader from "../components/Loading";
 import TeamSection from "../components/TeamSection";
+import WhyChooseUsSection from "../components/WhyChooseUsSection";
+import FAQSection from "../components/FAQSection";
+import NewsletterSection from "../components/NewsletterSection";
+import Testimonials from "../components/Testimonials";
 const Home = () => {
   const data = useLoaderData();
   const [loading, setLoading] = useState(true);
@@ -46,8 +50,12 @@ const Home = () => {
           ))}
         </div>
       )}
-      <TeamSection></TeamSection> 
+      <TeamSection></TeamSection>
+      <WhyChooseUsSection/> 
       <ExtraSection />
+      <Testimonials />
+      <FAQSection />
+      <NewsletterSection />
     </div>
   );
 };

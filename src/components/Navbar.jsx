@@ -23,11 +23,10 @@ const Navbar = () => {
   };
 
   return (
-    <div className="bg-base-100  mx-auto flex justify-between items-center py-2 px-10 border-b border-slate-300 sticky top-0 z-50">
+    <div className="bg-base-100 mx-auto flex justify-between items-center py-2 px-10 border-b border-slate-300 sticky top-0 z-50">
 
       {/* === Left: Hamburger + Company Name + Logo === */}
       <div className="flex items-center gap-3">
-        {/* Hamburger (only mobile) */}
         <button
           className="md:hidden text-2xl text-gray-700"
           onClick={() => setMenuOpen(!menuOpen)}
@@ -35,9 +34,7 @@ const Navbar = () => {
           {menuOpen ? <HiX /> : <HiMenu />}
         </button>
 
-        {/* Logo + Company Name */}
         <div className="flex items-center">
-          {/* Logo hidden on mobile */}
           <img
             className="hidden md:block h-12 w-15 object-contain"
             src="https://i.ibb.co.com/RTQjFFbp/e26-removebg-preview.png"
@@ -53,9 +50,11 @@ const Navbar = () => {
       <ul className="hidden md:flex items-center gap-6">
         <li><MyLink to="/">Home</MyLink></li>
         <li><MyLink to="/allProducts">AllProducts</MyLink></li>
-        <li><MyLink to="/myImports">MyImports</MyLink></li>
-        <li><MyLink to="/myExports">MyExports</MyLink></li>
-        <li><MyLink to="/addExport">AddExport</MyLink></li>
+        <li><MyLink to="/contact">Contact</MyLink></li>
+        <li><MyLink to="/blog">Blog</MyLink></li>
+
+        {/* Dashboard link only if logged in */}
+        {user && <li><MyLink to="/dashboard">Dashboard</MyLink></li>}
       </ul>
 
       {/* === Right: Profile / Auth === */}
@@ -144,9 +143,13 @@ const Navbar = () => {
         <ul className="flex flex-col gap-3 p-5 text-[15px]">
           <li onClick={() => setMenuOpen(false)}><MyLink to="/">Home</MyLink></li>
           <li onClick={() => setMenuOpen(false)}><MyLink to="/allProducts">AllProducts</MyLink></li>
-          <li onClick={() => setMenuOpen(false)}><MyLink to="/myImports">MyImports</MyLink></li>
-          <li onClick={() => setMenuOpen(false)}><MyLink to="/myExports">MyExports</MyLink></li>
-          <li onClick={() => setMenuOpen(false)}><MyLink to="/addExport">AddExport</MyLink></li>
+          <li onClick={() => setMenuOpen(false)}><MyLink to="/contact">Contact</MyLink></li>
+          <li onClick={() => setMenuOpen(false)}><MyLink to="/blog">Blog</MyLink></li>
+
+          {/* Dashboard for logged-in users */}
+          {user && (
+            <li onClick={() => setMenuOpen(false)}><MyLink to="/dashboard">Dashboard</MyLink></li>
+          )}
         </ul>
 
         {/* Dark Mode toggle inside mobile menu */}
@@ -165,3 +168,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
