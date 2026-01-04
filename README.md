@@ -3,7 +3,7 @@
 **Alpha Global Trade** is a modern and intelligent web platform where users can **manage exports**, **browse global products**, and **import any product** into their personal **“My Imports”** section with one click.  
 It offers a smooth and secure experience for international traders, businesses, and buyers — all in one place.
 
-**Live Site URL:** [https://alpha-global-trade.web.app](https://alpha-global-trade.web.app)
+**Live Site URL:** https://incredible-nasturtium-adfeb6.netlify.app
 
 ---
 
@@ -37,12 +37,75 @@ It offers a smooth and secure experience for international traders, businesses, 
 | Version Control | Git & GitHub |
 
 ---
+## 🛠 Project Dependencies
 
-## ⚙️ Installation Guide
+### Frontend (React Client)
+- react
+- react-dom
+- react-router
+- react-icons
+- react-toastify
+- framer-motion
+- swiper
+- react-sweetalert2
+- react-spinners
+- firebase
+- tailwindcss
+- @tailwindcss/vite
+- daisyui
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/subornakter/Export-Import-Client.git
-   git clone https://github.com/subornakter/Export-Import-Server.git
+### Backend (Node/Express Server)
+- express
+- cors
+- dotenv
+- mongodb
+- react-sweetalert2
+- swiper
+
+---
+
+## ⚙️ Local Setup / Installation Guide
+
+### 1️⃣ Clone the Repositories
+
+ ### Frontend
+
+git clone https://github.com/subornakter/Export-Import-Client.git
+
+cd Export-Import-Client
+
+### Backend
+git clone https://github.com/subornakter/Export-Import-Server.git
+
+cd Export-Import-Server
+
+
+## 🛠 Install Dependencies
+
+### Frontend
+
+cd Export-Import-Client
+
+npm install
+
+### Backend
+cd Export-Import-Server
+
+npm install
+
+#### ▶️ Run the Project
+
+### 🚀 Start Frontend
+cd Export-Import-Client
+
+npm run dev
+
+### 🚀 Start Backend
+cd Export-Import-Server
+
+nodemon index.js
+
+
+
    
 
